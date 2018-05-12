@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Firefox suite" verbose="1">
+
+    <test name="Chrome Test">
+        <parameter name="driverName" value="webdriver.chrome.driver"/>
+        <parameter name="path" value=".\src\test\resources\chromedriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.awardlightbox.OpenFullScreenAward"/>
+        </classes>
+    </test>
+
+</suite>
