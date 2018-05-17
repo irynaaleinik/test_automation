@@ -9,5 +9,8 @@
         <module name="client_sites" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="client_sites" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
