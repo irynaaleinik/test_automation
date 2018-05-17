@@ -13,7 +13,7 @@ public class OpenFullScreenAward {
     private String awardTitle = "Test Award +";
 
     private String myDashboardMenuLocator = "//div[@id='navBar']//a[@href='/microsites/t/dashboard/MyActivity?client=recipientbased']";
-    private String homeMenuLocator = "//div[@id='navBar']//a[@href='/microsites/t/home?client=recipientbased']";
+    private String homeMenuLocator = "//div[@id='navBar']/descendant::a[@href='/microsites/t/home?client=recipientbased']";
 
     @Parameters({ "driverName", "path" })
     @BeforeClass
@@ -35,12 +35,13 @@ public class OpenFullScreenAward {
         driver.findElement(By.id("viewAward")).click();
         Assert.assertEquals(driver.findElement(By.cssSelector("div#unifiedAwardDetailsLightbox div#al-messageEditorContainer h2")).getText(),awardTitle,
                 "Award title not found or different");
+
     }
 
     @Test(priority = 1)
-    public void openAwardPlusFromNewsFeed(){
+    public void openAwardPlusFromNewsFeed() {
         driver.findElement(By.xpath(homeMenuLocator)).click();
-        driver.findElement(By.xpath("//h3[contains(text(),'" + awardTitle + "')]/following-sibling::div[contains(@class,'buttonStyle1')]//a[@id='viewAwardButton1-button']")).click();
+        driver.findElement(By.xpath("//h3[contains(text(),'Test Award +')]/following-sibling::div[contains(@class,'buttonStyle1')]//a")).click();
         Assert.assertEquals(driver.findElement(By.cssSelector("div#unifiedAwardDetailsLightbox div#al-messageEditorContainer h2")).getText(),awardTitle,
                 "Award title not found or different");
     }
@@ -56,7 +57,7 @@ public class OpenFullScreenAward {
     @Test(priority = 3)
     public void openAwardFromNewUserProfile(){
         driver.findElement(By.xpath(homeMenuLocator)).click();
-        driver.findElement(By.xpath("//h3[contains(.,'" + awardTitle + "')]/ancestor::div[contains(@class, 'awardNewsItem')]/descendant::h3/child::a")).click();
+        driver.findElement(By.xpath("//h3[contains(.,'Test Award +')]/ancestor::div[contains(@class, 'awardNewsItem')]/descendant::h3/child::a")).click();
         driver.findElement(By.xpath("//p[contains(text(),'" + awardTitle + "')]/following-sibling::a")).click();
         Assert.assertEquals(driver.findElement(By.cssSelector("div#unifiedAwardDetailsLightbox div#al-messageEditorContainer h2")).getText(),awardTitle,
                 "Award title not found or different");
@@ -65,7 +66,7 @@ public class OpenFullScreenAward {
     @AfterClass(alwaysRun = true)
     public void closeDriver() {
         if (driver != null)
-            driver.quit();
+            driver.close();
     }
 
 }
