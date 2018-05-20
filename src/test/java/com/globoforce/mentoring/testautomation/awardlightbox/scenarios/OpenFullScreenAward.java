@@ -1,5 +1,7 @@
-package com.globoforce.mentoring.testautomation.awardlightbox;
+package com.globoforce.mentoring.testautomation.awardlightbox.scenarios;
 
+import com.globoforce.mentoring.testautomation.awardlightbox.Utils;
+import com.globoforce.mentoring.testautomation.awardlightbox.pages.LandingPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -27,9 +29,10 @@ public class OpenFullScreenAward {
         driver.findElement(By.id("signIn-button")).click();
     }
 
-    @Test
+    @Test(priority = 4, enabled = false)
     public void openAwardPlusFromMyNomination(){
-        driver.findElement(By.xpath(myDashboardMenuLocator)).click();
+        LandingPage landingMenu = new LandingPage(driver);
+        landingMenu.openMyDashboard();
         driver.findElement(By.xpath("//ul[@id='subNavBar']//a[@href='/microsites/t/dashboard/MyNominations?client=recipientbased']")).click();
         driver.findElement(By.cssSelector("div#my_nomination tbody tr:last-child td.col-icons a.detailsLink")).click();
         driver.findElement(By.id("viewAward")).click();
@@ -38,7 +41,7 @@ public class OpenFullScreenAward {
 
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2, enabled = false)
     public void openAwardPlusFromNewsFeed() {
         driver.findElement(By.xpath(homeMenuLocator)).click();
         driver.findElement(By.xpath("//h3[contains(text(),'Test Award +')]/following-sibling::div[contains(@class,'buttonStyle1')]//a")).click();
@@ -46,7 +49,7 @@ public class OpenFullScreenAward {
                 "Award title not found or different");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 1, enabled = false)
     public void openAwardPlusFromNewMyActivity(){
         driver.findElement(By.xpath(myDashboardMenuLocator)).click();
         driver.findElement(By.xpath("//p[contains(text(),'" + awardTitle + "')]/following-sibling::a")).click();
@@ -54,7 +57,7 @@ public class OpenFullScreenAward {
                 "Award title not found or different");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, enabled = false)
     public void openAwardFromNewUserProfile(){
         driver.findElement(By.xpath(homeMenuLocator)).click();
         driver.findElement(By.xpath("//h3[contains(.,'Test Award +')]/ancestor::div[contains(@class, 'awardNewsItem')]/descendant::h3/child::a")).click();
