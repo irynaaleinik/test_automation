@@ -7,7 +7,6 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 public class Utils {
     private String driverName;
@@ -41,8 +40,6 @@ public class Utils {
                 driver = new ChromeDriver();
                 break;
         };
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
         return driver;
     }
 }
