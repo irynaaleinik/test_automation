@@ -33,11 +33,11 @@ public class Utils {
             case "opera":
                 System.setProperty("webdriver.opera.driver", this.path);
                 OperaOptions options = new OperaOptions();
-                options.setBinary(new File("C:\\Users\\Iryna_Aleinik\\AppData\\Local\\Programs\\Opera\\launcher.exe"));
+                //options.setBinary(new File("C:\\Users\\Iryna_Aleinik\\AppData\\Local\\Programs\\Opera\\launcher.exe"));
                 driver = new OperaDriver(options);
                 break;
             default:
-                System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\operadriver.exe");
+                System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
         };
