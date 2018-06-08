@@ -1,0 +1,35 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Firefox suite" verbose="1">
+
+    <test name="Firefox Test">
+        <parameter name="driverName" value="firefox"/>
+        <parameter name="path" value=".\\src\\test\\resources\\geckodriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.awardlightbox.OpenFullScreenAward"/>
+        </classes>
+    </test>
+
+    <test name="Chrome Test">
+        <parameter name="driverName" value="chrome"/>
+        <parameter name="path" value=".\src\test\resources\chromedriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.awardlightbox.OpenFullScreenAward"/>
+        </classes>
+    </test>
+
+    <test name="Opera Test">
+        <parameter name="driverName" value="opera"/>
+        <parameter name="path" value=".\src\test\resources\operadriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.awardlightbox.OpenFullScreenAward"/>
+        </classes>
+    </test>
+
+
+
+
+
+
+
+</suite>

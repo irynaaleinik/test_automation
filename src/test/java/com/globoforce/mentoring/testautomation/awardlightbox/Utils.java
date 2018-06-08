@@ -7,7 +7,10 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.util.concurrent.TimeUnit;
+=======
+>>>>>>> pageobject
 
 public class Utils {
     private String driverName;
@@ -33,6 +36,7 @@ public class Utils {
             case "opera":
                 System.setProperty("webdriver.opera.driver", this.path);
                 OperaOptions options = new OperaOptions();
+<<<<<<< HEAD
                 //options.setBinary(new File("C:\\Users\\Iryna_Aleinik\\AppData\\Local\\Programs\\Opera\\launcher.exe"));
                 driver = new OperaDriver(options);
                 break;
@@ -43,6 +47,16 @@ public class Utils {
         };
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+=======
+                options.setBinary(new File("C:\\Users\\Iryna_Aleinik\\AppData\\Local\\Programs\\Opera\\launcher.exe"));
+                driver = new OperaDriver(options);
+                break;
+            default:
+                System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\operadriver.exe");
+                driver = new ChromeDriver();
+                break;
+        };
+>>>>>>> pageobject
         return driver;
     }
 }

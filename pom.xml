@@ -14,9 +14,20 @@
 
     <dependencies>
         <dependency>
+<<<<<<< HEAD
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.4.0</version>
+=======
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.8.0</version>
+>>>>>>> pageobject
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -29,6 +40,14 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.21.0</version>
         </dependency>
+<<<<<<< HEAD
+=======
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.18</version>
+        </dependency>
+>>>>>>> pageobject
     </dependencies>
 
     <build>
@@ -36,7 +55,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+<<<<<<< HEAD
                 <version>3.7.0</version>
+=======
+>>>>>>> pageobject
                 <configuration>
                     <source>7</source>
                     <target>7</target>
