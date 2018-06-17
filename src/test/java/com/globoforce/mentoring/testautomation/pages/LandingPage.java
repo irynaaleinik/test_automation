@@ -2,12 +2,17 @@ package com.globoforce.mentoring.testautomation.pages;
 
 import com.globoforce.mentoring.testautomation.pages.awardlightbox.AwardPlusLightboxPage;
 import com.globoforce.mentoring.testautomation.pages.mydashboard.MyActivityPage;
+import com.globoforce.mentoring.testautomation.pages.mydashboard.MyApprovalPage;
 import com.globoforce.mentoring.testautomation.pages.mydashboard.MyDashboardSubMenuPage;
 import com.globoforce.mentoring.testautomation.pages.myteam.MyTeam;
+import com.globoforce.mentoring.testautomation.pages.nomination.Nomination;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.w3c.dom.html.HTMLElement;
+import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
+import ru.yandex.qatools.htmlelements.element.Link;
 
 public class LandingPage extends BasePage {
 
@@ -19,6 +24,12 @@ public class LandingPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='navBar']//a[@href='/microsites/t/myteam/MyTeamHome']")
     private HtmlElement myTeamMenu;
+
+    @FindBy(id = "np_start")
+    private Button recognizeMenu;
+
+    @FindBy(linkText = "Log Out")
+    private Link logOutLink;
 
     public LandingPage (WebDriver driver){
         super(driver);
@@ -34,9 +45,15 @@ public class LandingPage extends BasePage {
         return new MyActivityPage(getWebDriver());
     }
 
-    public MyDashboardSubMenuPage navigateToMyDashboardSubmenu(){
+    public MyDashboardSubMenuPage navigateToMyDashboardSubMenu(){
         myDashboardMenu.click();
         return new MyDashboardSubMenuPage(getWebDriver());
+    }
+
+    public Nomination startNomination(){
+        waitUntilClickable(recognizeMenu);
+        recognizeMenu.click();
+        return new Nomination(getWebDriver());
     }
 
     public MyTeam openMyTeam(){
@@ -54,5 +71,9 @@ public class LandingPage extends BasePage {
         return new UserProfilePage(getWebDriver());
     }
 
-
+    public LoginPage logOut(){
+        waitUntilClickable(logOutLink);
+        logOutLink.click();
+        return new LoginPage(getWebDriver());
+    }
 }

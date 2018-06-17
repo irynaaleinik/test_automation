@@ -26,4 +26,9 @@ public class LoginPage extends BasePage {
         loginButton.click();
     }
 
+    public void loginAfterLogOut(String login, String password){
+        loginButton.click();
+        this.loginClientSites(login, password);
+    }
+
 }

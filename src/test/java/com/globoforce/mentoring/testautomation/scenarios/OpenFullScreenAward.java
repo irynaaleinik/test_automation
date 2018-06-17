@@ -1,5 +1,6 @@
 package com.globoforce.mentoring.testautomation.scenarios;
 
+import com.globoforce.mentoring.testautomation.businessobject.Client;
 import com.globoforce.mentoring.testautomation.businessobject.User;
 import com.globoforce.mentoring.testautomation.utils.DataBaseUtil;
 import com.globoforce.mentoring.testautomation.utils.WebDriverUtil;
@@ -16,8 +17,8 @@ import java.util.ResourceBundle;
 public class OpenFullScreenAward {
     private WebDriver driver;
     private DataBaseUtil dataBaseUtil;
-    private ResourceBundle resource;
     private User user;
+    private Client client;
 
     private static final String URL = "https://test-web1-17.corp.globoforce.com/microsites/t/home?client=recipientbased&setCAG=true";
     private static final String FLUSH_URL = "https://test-web1-17.corp.globoforce.com/cache-manager-app/cache/CacheFlushServlet";
@@ -41,7 +42,7 @@ public class OpenFullScreenAward {
         loginPage.loginClientSites(user.getPersonUserName(), user.getPassword());
     }
 
-    @Test
+    @Test(priority = 2)
     public void openAwardPlusFromNewsFeed() {
         AwardPlusLightboxPage awardPlus = new LandingPage(driver)
                 .openHome()
@@ -49,7 +50,7 @@ public class OpenFullScreenAward {
         Assert.assertEquals(awardPlus.getAwardTitle(), AWARD_TITLE,"Award title not found or different");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 3)
     public void openAwardPlusFromNewMyActivity(){
         AwardPlusLightboxPage awardPlus = new LandingPage(driver)
                 .openMyActivity()
@@ -57,7 +58,7 @@ public class OpenFullScreenAward {
         Assert.assertEquals(awardPlus.getAwardTitle(), AWARD_TITLE,"Award title not found or different");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void openAwardFromNewUserProfile(){
         AwardPlusLightboxPage awardPlus = new LandingPage(driver)
                 .openHome()
@@ -67,7 +68,8 @@ public class OpenFullScreenAward {
     }
 
     @AfterClass(alwaysRun = true)
-    public void closeDriver() throws SQLException {
+    public void closeDriver() throws SQLException, ClassNotFoundException {
+        dataBaseUtil = new DataBaseUtil();
         dataBaseUtil.updateClientProperty(CLIENT_ID,PROP_NAME,"false");
         if (driver != null)
             driver.close();

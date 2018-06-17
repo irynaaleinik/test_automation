@@ -2,17 +2,20 @@ package com.globoforce.mentoring.testautomation.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.util.Strings;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
 
+import javax.xml.datatype.Duration;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
 
     protected final WebDriver webdriver;
 
-    protected final int PAGE_LOAD_TIMEOUT = 30;
-    protected final int IMPLICITLY_WAIT_TIMEOUT = 30;
+    protected final int PAGE_LOAD_TIMEOUT = 50;
+    protected final int IMPLICITLY_WAIT_TIMEOUT = 50;
 
     public BasePage(WebDriver driver) {
         this.webdriver = driver;
@@ -31,5 +34,21 @@ public abstract class BasePage {
         if (!Strings.isNullOrEmpty(text))
             field.sendKeys(text);
     }
+
+    public void waitUntilVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(webdriver, 10);
+        element = wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public Boolean waitUntilInvisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(webdriver, 10);
+        return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public void waitUntilClickable(WebElement element){
+        WebDriverWait wait = new WebDriverWait(webdriver, 20);
+        element = wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
 
 }

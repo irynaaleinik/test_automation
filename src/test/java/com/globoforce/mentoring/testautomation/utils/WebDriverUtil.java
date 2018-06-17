@@ -32,7 +32,7 @@ public class WebDriverUtil {
             case "opera":
                 System.setProperty("webdriver.opera.driver", this.path);
                 OperaOptions options = new OperaOptions();
-                options.setBinary(new File("C:\\Users\\Iryna_Aleinik\\AppData\\Local\\Programs\\Opera\\launcher.exe"));
+                options.setBinary(new File("C:\\Program files\\Opera\\launcher.exe"));
                 driver = new OperaDriver(options);
                 break;
             default:
