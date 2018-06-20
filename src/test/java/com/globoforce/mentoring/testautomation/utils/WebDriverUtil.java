@@ -2,6 +2,7 @@ package com.globoforce.mentoring.testautomation.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
@@ -29,14 +30,12 @@ public class WebDriverUtil {
                 System.setProperty("webdriver.gecko.driver", this.path);
                 driver = new FirefoxDriver();
                 break;
-            case "opera":
-                System.setProperty("webdriver.opera.driver", this.path);
-                OperaOptions options = new OperaOptions();
-                options.setBinary(new File("C:\\Program files\\Opera\\launcher.exe"));
-                driver = new OperaDriver(options);
+            case "edge":
+                System.setProperty("webdriver.edge.driver", this.path);
+                driver = new EdgeDriver();
                 break;
             default:
-                System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\operadriver.exe");
+                System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
         };

@@ -8,6 +8,8 @@ import com.globoforce.mentoring.testautomation.pages.myteam.MyTeam;
 import com.globoforce.mentoring.testautomation.pages.nomination.Nomination;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.w3c.dom.html.HTMLElement;
 import ru.yandex.qatools.htmlelements.element.Button;
@@ -29,13 +31,14 @@ public class LandingPage extends BasePage {
     private Button recognizeMenu;
 
     @FindBy(linkText = "Log Out")
-    private Link logOutLink;
+    public Link logOutLink;
 
     public LandingPage (WebDriver driver){
         super(driver);
     }
 
     public LandingPage openHome(){
+        waitUntilClickable(homeMenu);
         homeMenu.click();
         return this;
     }
@@ -50,13 +53,18 @@ public class LandingPage extends BasePage {
         return new MyDashboardSubMenuPage(getWebDriver());
     }
 
-    public Nomination startNomination(){
+    public Nomination startNomination() throws InterruptedException {
+        waitUntilVisible(recognizeMenu);
         waitUntilClickable(recognizeMenu);
+        if (webdriver instanceof EdgeDriver) {
+            Thread.sleep(2000);
+        }
         recognizeMenu.click();
         return new Nomination(getWebDriver());
     }
 
     public MyTeam openMyTeam(){
+        waitUntilClickable(myTeamMenu);
         myTeamMenu.click();
         return new MyTeam(getWebDriver());
     }
@@ -71,7 +79,8 @@ public class LandingPage extends BasePage {
         return new UserProfilePage(getWebDriver());
     }
 
-    public LoginPage logOut(){
+    public LoginPage logOut() throws InterruptedException {
+        Thread.sleep(2000);
         waitUntilClickable(logOutLink);
         logOutLink.click();
         return new LoginPage(getWebDriver());

@@ -33,11 +33,11 @@ public class ApproveNomination {
     private String AWARD_NAME = "Award3";
 
     private static final String CONFIRMATION_MESSAGE = "Thanks for taking the time to recognize a colleague.\n" +
-            "It's an important part of our culture.";
+            "It's an important part of our culture. ";
 
     @Parameters({"driverName", "path"})
     @BeforeClass
-    public void startDriverAndLogin(@Optional("chrome") String driverName, String path) {
+    public void startDriverAndLogin(@Optional("chrome") String driverName, String path) throws InterruptedException {
         WebDriverUtil webDriverUtil = new WebDriverUtil(driverName, path);
         driver = webDriverUtil.setDriver();
         driver.navigate().to(URL);
@@ -73,7 +73,7 @@ public class ApproveNomination {
         Assert.assertEquals(myApprovalPage.getNumberOfPendingNominations(), numberOfPendingNominations-1);
     }
 
-    private void placeNomination(String awardTitle){
+    private void placeNomination(String awardTitle) throws InterruptedException {
         recipient = new User(RECIPIENT);
         nomination = new LandingPage(driver)
                 .startNomination()
