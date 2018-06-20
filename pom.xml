@@ -40,7 +40,7 @@
             <version>12.1.0.2</version>
             <type>jar</type>
             <scope>system</scope>
-            <systemPath>D:/OracleDriver/ojdbc7-12.1.0.2.jar</systemPath>
+            <systemPath>${project.basedir}/lib/ojdbc7-12.1.0.2.jar</systemPath>
         </dependency>
     </dependencies>
 
