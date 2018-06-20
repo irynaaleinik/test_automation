@@ -2,15 +2,37 @@
 
 <suite name="Browsers suite" verbose="1">
 
+    <test name="Chrome Test">
+        <parameter name="driverName" value="chrome"/>
+        <parameter name="path" value=".\src\test\resources\chromedriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
+        </classes>
+    </test>
 
+    <test name="Firefox Test">
+        <parameter name="driverName" value="firefox"/>
+        <parameter name="path" value=".\\src\\test\\resources\\geckodriver.exe"/>
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
+        </classes>
+    </test>
 
     <test name="Edge Test">
         <parameter name="driverName" value="edge"/>
         <parameter name="path" value=".\src\test\resources\MicrosoftWebDriver.exe"/>
         <classes>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
             <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
         </classes>
     </test>
+
+
 
 
 </suite>
