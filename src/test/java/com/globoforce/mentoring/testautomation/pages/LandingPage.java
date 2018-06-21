@@ -56,9 +56,7 @@ public class LandingPage extends BasePage {
     public Nomination startNomination() throws InterruptedException {
         waitUntilVisible(recognizeMenu);
         waitUntilClickable(recognizeMenu);
-        if (webdriver instanceof EdgeDriver) {
-            Thread.sleep(2000);
-        }
+        Thread.sleep(2000);
         recognizeMenu.click();
         return new Nomination(getWebDriver());
     }
