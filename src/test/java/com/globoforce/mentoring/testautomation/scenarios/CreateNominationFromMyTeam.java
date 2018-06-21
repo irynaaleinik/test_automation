@@ -27,7 +27,7 @@ public class CreateNominationFromMyTeam {
     private String AWARD_REASON = "New Baby";
 
     private static final String CONFIRMATION_MESSAGE = "Thanks for taking the time to recognize a colleague.\n" +
-            "It's an important part of our culture. ";
+            "It's an important part of our culture.";
 
     @Parameters({"driverName", "path"})
     @BeforeClass

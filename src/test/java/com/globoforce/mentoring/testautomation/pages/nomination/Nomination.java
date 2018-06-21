@@ -116,7 +116,7 @@ public class Nomination extends BasePage {
 
     public String getConfirmationMessage(){
         waitUntilVisible(confirmationMessage);
-        return confirmationMessage.getText();
+        return confirmationMessage.getText().trim();
     }
 
     public void closeNominationConfirmation(){
