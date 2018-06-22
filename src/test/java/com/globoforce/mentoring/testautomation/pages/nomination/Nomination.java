@@ -58,7 +58,7 @@ public class Nomination extends BasePage {
     }
 
     public Nomination navigateToNextStep(){
-        waitUntilVisible(nextButton);
+        waitUntilClickable(nextButton);
         nextButton.click();
         return this;
     }

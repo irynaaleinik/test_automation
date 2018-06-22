@@ -5,6 +5,7 @@ import com.globoforce.mentoring.testautomation.pages.LandingPage;
 import com.globoforce.mentoring.testautomation.pages.LoginPage;
 import com.globoforce.mentoring.testautomation.pages.mydashboard.MyApprovalPage;
 import com.globoforce.mentoring.testautomation.pages.nomination.Nomination;
+import com.globoforce.mentoring.testautomation.services.NominationService;
 import com.globoforce.mentoring.testautomation.utils.WebDriverUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -30,7 +31,9 @@ public class ApproveNomination {
     private String AWARD_TITLE2 = "Test for Approval2";
     private String MESSAGE_TO_APPROVER = "";
     private String AWARD_REASON = "REASON1";
+    private String AWARD_ADVISOR = "Optional";
     private String AWARD_NAME = "Award3";
+    private String NOMINATE_FROM = "Menu";
 
     private static final String CONFIRMATION_MESSAGE = "Thanks for taking the time to recognize a colleague.\n" +
             "It's an important part of our culture.";
@@ -43,9 +46,30 @@ public class ApproveNomination {
         driver.navigate().to(URL);
         loginPage = new LoginPage(driver);
         nominator = new User(NOMINATOR);
+        recipient = new User(RECIPIENT);
         loginPage.loginClientSites(nominator.getPersonUserName(), nominator.getPassword());
-        placeNomination(AWARD_TITLE1);
-        placeNomination(AWARD_TITLE2);
+        nomination = new NominationService.NominationBuilder(driver)
+                .setPlaceToStartNomination(NOMINATE_FROM)
+                .setRecipient(recipient.getFirstName() + " " + recipient.getLastName())
+                .setAwardReason(AWARD_REASON)
+                .setAwardAdvisorMandatoryOrOptional(AWARD_ADVISOR)
+                .setAwardLevel(AWARD_NAME)
+                .setAwardTitle(AWARD_TITLE1)
+                .setAwardMessage(AWARD_TITLE1)
+                .setMessageToApprover(MESSAGE_TO_APPROVER)
+                .setConfirmationMessage(CONFIRMATION_MESSAGE)
+                .placeNomination();
+        nomination = new NominationService.NominationBuilder(driver)
+                .setPlaceToStartNomination(NOMINATE_FROM)
+                .setRecipient(recipient.getFirstName() + " " + recipient.getLastName())
+                .setAwardReason(AWARD_REASON)
+                .setAwardAdvisorMandatoryOrOptional(AWARD_ADVISOR)
+                .setAwardLevel(AWARD_NAME)
+                .setAwardTitle(AWARD_TITLE2)
+                .setAwardMessage(AWARD_TITLE2)
+                .setMessageToApprover(MESSAGE_TO_APPROVER)
+                .setConfirmationMessage(CONFIRMATION_MESSAGE)
+                .placeNomination();
         landingPage = new LandingPage(driver);
         landingPage.logOut();
         approver = new User(APPROVER);
@@ -71,23 +95,6 @@ public class ApproveNomination {
         myApprovalPage.openPendingNominationByName(AWARD_TITLE2)
                 .approveNomination();
         Assert.assertEquals(myApprovalPage.getNumberOfPendingNominations(), numberOfPendingNominations-1);
-    }
-
-    private void placeNomination(String awardTitle) throws InterruptedException {
-        recipient = new User(RECIPIENT);
-        nomination = new LandingPage(driver)
-                .startNomination()
-                .selectRecipientBySearch(recipient.getFirstName() + " " + recipient.getLastName())
-                .navigateToNextStep()
-                .chooseAwardReasonByName(AWARD_REASON)
-                .skipAwardAdvisor()
-                .chooseAwardLevel(AWARD_NAME)
-                .setTitle(awardTitle)
-                .setMessage(awardTitle)
-                .setMessageToApprover(MESSAGE_TO_APPROVER)
-                .createNomination();
-        Assert.assertEquals(nomination.getConfirmationMessage(), CONFIRMATION_MESSAGE, "Something goes wrong, confirmation message is not displayed");
-        nomination.closeNominationConfirmation();
     }
 
     @AfterClass(alwaysRun = true)

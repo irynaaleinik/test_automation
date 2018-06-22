@@ -3,10 +3,10 @@ package com.globoforce.mentoring.testautomation.businessobject;
 import java.util.ResourceBundle;
 
 public class User {
-    private String firstName = null;
-    private String lastName = null;
-    private String personUserName = null;
-    private String password = null;
+    private String firstName;
+    private String lastName;
+    private String personUserName;
+    private String password;
 
     public User(String userRole) {
         ResourceBundle resource = ResourceBundle.getBundle("user");

@@ -1,29 +1,22 @@
 package com.globoforce.mentoring.testautomation.utils;
 
+import com.globoforce.mentoring.testautomation.businessobject.User;
+import com.globoforce.mentoring.testautomation.services.DbConnectionFactory;
+
 import java.sql.*;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DataBaseUtil {
 
     private Connection connection = null;
-    private String url = null;
-    private String user = null;
-    private String pass = null;
     private ResultSet result = null;
+    private String DATABASE_LIVE = "live";
 
-    public DataBaseUtil() throws ClassNotFoundException,SQLException {
-        ResourceBundle resource =
-                ResourceBundle.getBundle("database");
-        this.url = resource.getString("url");
-        String driver = resource.getString("driver");
-        this.user = resource.getString("user");
-        this.pass = resource.getString("password");
-        Class.forName(driver);
-    }
-
-    public void updateClientProperty(long clientId, String propName, String value)throws SQLException {
+    public void updateClientProperty(long clientId, String propName, String value) throws SQLException, ClassNotFoundException {
         try {
-            connection = DriverManager.getConnection(url, user, pass);
+            DbConnectionFactory connectionFactory = new DbConnectionFactory();
+            connection = connectionFactory.getDbConnection(DATABASE_LIVE);
             Statement statement = connection.createStatement();
             result = statement.executeQuery("select pk_owner from gg_ms_props where pk_owner = '" + clientId + "' and name = '" + propName + "'");
             if (result.next()){
