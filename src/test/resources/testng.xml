@@ -6,9 +6,9 @@
         <parameter name="driverName" value="chrome"/>
         <parameter name="path" value=".\src\test\resources\chromedriver.exe"/>
         <classes>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.OpenFullScreenAward"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.ApproveNomination"/>
         </classes>
     </test>
 
@@ -16,9 +16,9 @@
         <parameter name="driverName" value="firefox"/>
         <parameter name="path" value=".\\src\\test\\resources\\geckodriver.exe"/>
         <classes>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.OpenFullScreenAward"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.ApproveNomination"/>
         </classes>
     </test>
 
@@ -26,9 +26,15 @@
         <parameter name="driverName" value="edge"/>
         <parameter name="path" value=".\src\test\resources\MicrosoftWebDriver.exe"/>
         <classes>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.CreateNominationFromMyTeam"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.OpenFullScreenAward"/>
-            <class name="com.globoforce.mentoring.testautomation.scenarios.ApproveNomination"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.CreateNominationFromMyTeam"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.OpenFullScreenAward"/>
+            <class name="com.globoforce.mentoring.testautomation.uitesting.scenarios.ApproveNomination"/>
+        </classes>
+    </test>
+
+    <test name="Edge Test">
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.webservices.scenarios.StateCodeTest"/>
         </classes>
     </test>
 

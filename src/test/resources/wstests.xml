@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="WS suite" verbose="1">
+
+    <test name="WS Tests">
+        <classes>
+            <class name="com.globoforce.mentoring.testautomation.webservices.scenarios.StateCodeTest"/>
+        </classes>
+    </test>
+
+</suite>
