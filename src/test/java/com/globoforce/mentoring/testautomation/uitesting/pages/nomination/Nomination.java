@@ -120,6 +120,7 @@ public class Nomination extends BasePage {
 
     public void closeNominationConfirmation(){
         waitUntilClickable(closeButton);
+        waitUntilVisible(closeButton);
         closeButton.click();
         waitUntilInvisible(closeButton);
     }

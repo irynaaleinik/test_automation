@@ -1,14 +1,17 @@
 package com.globoforce.mentoring.testautomation.webservices.scenarios;
 
+import com.globoforce.mentoring.testautomation.uitesting.utils.TestListener;
 import com.globoforce.mentoring.testautomation.webservices.utils.HttpUtil;
 import com.globoforce.mentoring.testautomation.webservices.utils.ResponseUtil;
 import org.apache.http.HttpResponse;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+@Listeners(TestListener.class)
 public class StateCodeTest {
     HttpUtil util;
     HttpResponse response;

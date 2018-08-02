@@ -13,8 +13,8 @@ public abstract class BasePage {
 
     protected final WebDriver webdriver;
 
-    protected final int PAGE_LOAD_TIMEOUT = 50;
-    protected final int IMPLICITLY_WAIT_TIMEOUT = 50;
+    protected final int PAGE_LOAD_TIMEOUT = 90;
+    protected final int IMPLICITLY_WAIT_TIMEOUT = 90;
 
     public BasePage(WebDriver driver) {
         this.webdriver = driver;

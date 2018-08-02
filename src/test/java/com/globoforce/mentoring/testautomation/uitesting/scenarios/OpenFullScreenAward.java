@@ -3,16 +3,20 @@ package com.globoforce.mentoring.testautomation.uitesting.scenarios;
 import com.globoforce.mentoring.testautomation.uitesting.businessobject.Client;
 import com.globoforce.mentoring.testautomation.uitesting.businessobject.User;
 import com.globoforce.mentoring.testautomation.uitesting.utils.DataBaseUtil;
+import com.globoforce.mentoring.testautomation.uitesting.utils.ScreenshotUtil;
+import com.globoforce.mentoring.testautomation.uitesting.utils.TestListener;
 import com.globoforce.mentoring.testautomation.uitesting.utils.WebDriverUtil;
 import com.globoforce.mentoring.testautomation.uitesting.pages.awardlightbox.AwardPlusLightboxPage;
 import com.globoforce.mentoring.testautomation.uitesting.pages.LandingPage;
 import com.globoforce.mentoring.testautomation.uitesting.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.sql.SQLException;
 
+@Listeners(TestListener.class)
 public class OpenFullScreenAward {
     private WebDriver driver;
     private DataBaseUtil dataBaseUtil;
@@ -64,6 +68,11 @@ public class OpenFullScreenAward {
                 .openAwardRecipientProfileByAwardTitle(AWARD_TITLE)
                 .openAwardPlusByAwardTitle(AWARD_TITLE);
         Assert.assertEquals(awardPlus.getAwardTitle(), AWARD_TITLE,"Award title not found or different");
+    }
+
+    @AfterMethod
+    public void takeScreenshot(ITestResult result) {
+        ScreenshotUtil.captureScreenshot(driver, result);
     }
 
     @AfterClass(alwaysRun = true)

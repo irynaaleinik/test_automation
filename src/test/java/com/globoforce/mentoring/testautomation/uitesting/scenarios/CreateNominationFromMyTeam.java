@@ -3,12 +3,16 @@ package com.globoforce.mentoring.testautomation.uitesting.scenarios;
 import com.globoforce.mentoring.testautomation.uitesting.businessobject.Client;
 import com.globoforce.mentoring.testautomation.uitesting.businessobject.User;
 import com.globoforce.mentoring.testautomation.uitesting.services.NominationService;
+import com.globoforce.mentoring.testautomation.uitesting.utils.ScreenshotUtil;
+import com.globoforce.mentoring.testautomation.uitesting.utils.TestListener;
 import com.globoforce.mentoring.testautomation.uitesting.utils.WebDriverUtil;
 import com.globoforce.mentoring.testautomation.uitesting.pages.LoginPage;
 import com.globoforce.mentoring.testautomation.uitesting.pages.nomination.Nomination;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+@Listeners(TestListener.class)
 public class CreateNominationFromMyTeam {
 
     private WebDriver driver;
@@ -50,6 +54,11 @@ public class CreateNominationFromMyTeam {
                 .setAwardMessage(AWARD_TITLE)
                 .setConfirmationMessage(CONFIRMATION_MESSAGE)
                 .placeNomination();
+    }
+
+    @AfterMethod
+    public void takeScreenshot(ITestResult result) {
+        ScreenshotUtil.captureScreenshot(driver, result);
     }
 
     @AfterClass(alwaysRun = true)

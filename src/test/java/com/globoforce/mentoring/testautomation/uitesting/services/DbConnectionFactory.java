@@ -15,7 +15,7 @@ public class DbConnectionFactory {
             case "sandbox" :
                 connection = new SandboxDbConnection();
                 return connection.getDbConnection();
-            case "life" :
+            case "live" :
                 connection = new LifeDbConnection();
                 return connection.getDbConnection();
             default : throw new IllegalArgumentException("Db with such name does not exist");

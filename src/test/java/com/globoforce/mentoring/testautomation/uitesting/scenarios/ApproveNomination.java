@@ -6,11 +6,16 @@ import com.globoforce.mentoring.testautomation.uitesting.pages.LoginPage;
 import com.globoforce.mentoring.testautomation.uitesting.pages.mydashboard.MyApprovalPage;
 import com.globoforce.mentoring.testautomation.uitesting.pages.nomination.Nomination;
 import com.globoforce.mentoring.testautomation.uitesting.services.NominationService;
+import com.globoforce.mentoring.testautomation.uitesting.utils.ScreenshotUtil;
+import com.globoforce.mentoring.testautomation.uitesting.utils.TestListener;
 import com.globoforce.mentoring.testautomation.uitesting.utils.WebDriverUtil;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+@Listeners(TestListener.class)
 public class ApproveNomination {
 
     private WebDriver driver;
@@ -22,6 +27,7 @@ public class ApproveNomination {
     LandingPage landingPage;
     MyApprovalPage myApprovalPage;
     private int numberOfPendingNominations;
+    private Logger logger;
 
     private static final String URL = "https://test-web1-17.corp.globoforce.com/microsites/t/home?client=recipientbased&setCAG=true";
     private String NOMINATOR = "nominator";
@@ -74,27 +80,37 @@ public class ApproveNomination {
         landingPage.logOut();
         approver = new User(APPROVER);
         loginPage.loginAfterLogOut(approver.getPersonUserName(), approver.getPassword());
+        logger = Logger.getLogger(getClass());
     }
 
     @Test(description = "Approve Nomination by clicking Approve button on approval card", priority = 6)
     public void approveNominationOnCard(){
+        logger.info("As approval manager and navigate to My Approval page");
         myApprovalPage = new LandingPage(driver)
                 .navigateToMyDashboardSubMenu()
                 .openMyApprovalPage();
         numberOfPendingNominations = myApprovalPage.getNumberOfPendingNominations();
+        logger.info("Approve prepared nomination on Card and verify that number of Pending Nomination is changed");
         myApprovalPage.approvePendingNominationByName(AWARD_TITLE1);
         Assert.assertEquals(myApprovalPage.getNumberOfPendingNominations(), numberOfPendingNominations-1);
     }
 
     @Test(description = "Approve Nomination by clicking Approve button in Approval lightbox", priority = 5)
     public void approveNominationFromApprovalLightbox(){
+        logger.info("As approval manager and navigate to My Approval page");
         myApprovalPage = new LandingPage(driver)
                 .navigateToMyDashboardSubMenu()
                 .openMyApprovalPage();
         numberOfPendingNominations = myApprovalPage.getNumberOfPendingNominations();
+        logger.info("Approve prepared nomination in Approval Lightbox and verify that number of Pending Nomination is changed");
         myApprovalPage.openPendingNominationByName(AWARD_TITLE2)
                 .approveNomination();
         Assert.assertEquals(myApprovalPage.getNumberOfPendingNominations(), numberOfPendingNominations-1);
+    }
+
+    @AfterMethod
+    public void takeScreenshot(ITestResult result) {
+        ScreenshotUtil.captureScreenshot(driver, result);
     }
 
     @AfterClass(alwaysRun = true)
